@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Data_Access_Layer.Booking>
+@{
+    ViewData["Title"] = "ViewMyBooking";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1 class="display-4">My Booking</h1>
+@if(!Model.Any()){
+    <h2 class="text-center display-3">
+        No Room Booked Yet
+    </h2>
+}else{	
+	<table class="table">
+		<div role="tabpanel" class="tab-pane fade active show" id="hot-jobs">
+			<div class="row">
+				@foreach(var item in Model){
+				<div class="col-md-6 col-lg-3">
+					<div class="job-item">
+
+						<div class="job-info">
+							<div class="company-logo">
+								<img src="~/images/@item.Room.ImagePath" class="img-fluid" />
+							</div>
+							<span class="tr-title">
+
+								<input type="hidden" asp-for="@item.Id" />
+								<input type="hidden" asp-for="@item.TotalAmount" />
+								<input type="text" id="spanUserName" asp-for="@item.UserName" hidden />
+
+								<a href="#">Room Number :@item.Room.RoomNumber</a>
+
+							</span>
+							<ul class="tr-list job-meta">
+								<li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span> Branch : <span style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">@item.Room.Branch.BranchName Branch</span></li>
+								<li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>Room Type: <span style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">@item.Room.RoomType.Name</span></li>
+								<li><span><i class="fa fa-money" aria-hidden="true"></i></span>Price: @item.Room.RoomPrice <span style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">LE</span></li>
+
+								<li><span><i class="fa fa-money" aria-hidden="true"></i></span>Total Amout : @item.TotalAmount <span style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">LE</span></li>
+								<li><input type="date" asp-for="@item.CurrentDate" class="form-control" /></li>
+
+							</ul>
+							<div class="time">
+								<div class="row">
+
+								
+                                 <a onclick="Delete(@item.Id)" class="btn btn-danger">Delete</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+
+				</div><!-- /.row -->
+				}
+			</div><!-- /.tab-pane -->
+
+	</table>
+
+}
+@section scripts{
+	<script>
+		 function Delete(id){
+            alertify.confirm('Hotel System','Are you Sure You want To Delete this Room',function(){
+                window.location.href = '@Url.Action("DeleteBooking" , "Booking")/'+id;
+            },null);
+        }
+	</script>
+}

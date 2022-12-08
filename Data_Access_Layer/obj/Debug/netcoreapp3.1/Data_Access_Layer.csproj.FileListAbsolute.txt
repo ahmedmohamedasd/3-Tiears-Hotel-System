@@ -1,0 +1,14 @@
+E:\My Work\3TierHotel\Data_Access_Layer\bin\Debug\netcoreapp3.1\appsettings.Development.json
+E:\My Work\3TierHotel\Data_Access_Layer\bin\Debug\netcoreapp3.1\Data_Access_Layer.deps.json
+E:\My Work\3TierHotel\Data_Access_Layer\bin\Debug\netcoreapp3.1\Data_Access_Layer.runtimeconfig.json
+E:\My Work\3TierHotel\Data_Access_Layer\bin\Debug\netcoreapp3.1\Data_Access_Layer.runtimeconfig.dev.json
+E:\My Work\3TierHotel\Data_Access_Layer\bin\Debug\netcoreapp3.1\Data_Access_Layer.dll
+E:\My Work\3TierHotel\Data_Access_Layer\bin\Debug\netcoreapp3.1\Data_Access_Layer.pdb
+E:\My Work\3TierHotel\Data_Access_Layer\obj\Debug\netcoreapp3.1\Data_Access_Layer.csproj.AssemblyReference.cache
+E:\My Work\3TierHotel\Data_Access_Layer\obj\Debug\netcoreapp3.1\Data_Access_Layer.GeneratedMSBuildEditorConfig.editorconfig
+E:\My Work\3TierHotel\Data_Access_Layer\obj\Debug\netcoreapp3.1\Data_Access_Layer.AssemblyInfoInputs.cache
+E:\My Work\3TierHotel\Data_Access_Layer\obj\Debug\netcoreapp3.1\Data_Access_Layer.AssemblyInfo.cs
+E:\My Work\3TierHotel\Data_Access_Layer\obj\Debug\netcoreapp3.1\Data_Access_Layer.csproj.CoreCompileInputs.cache
+E:\My Work\3TierHotel\Data_Access_Layer\obj\Debug\netcoreapp3.1\Data_Access_Layer.dll
+E:\My Work\3TierHotel\Data_Access_Layer\obj\Debug\netcoreapp3.1\Data_Access_Layer.pdb
+E:\My Work\3TierHotel\Data_Access_Layer\obj\Debug\netcoreapp3.1\Data_Access_Layer.genruntimeconfig.cache

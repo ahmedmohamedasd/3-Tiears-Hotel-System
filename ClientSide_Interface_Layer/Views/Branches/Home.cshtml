@@ -1,0 +1,60 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Home Page";
+    var currentUser = TempData["CurrentUser"];
+    var _Token = TempData["_Token"];
+    var currentDate = DateTime.Now;
+}
+<div class="row">
+    <h1 class="display-3 col-12 text-center">Hotel Branches </h1>
+    <h3 class="display-4 col-12 text-center">Choose Branch</h3>
+</div>
+<div>
+    <div class="card-group">
+        <div class="row">
+            <span hidden id="CurrentUserSpan">@currentUser</span>
+            <span hidden id="TokenSpan">@_Token</span>
+
+        <div class="card col-4">
+                <img class="card-img-top img-fluid" src="~/images/branch1.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Special Branch</h5>
+                    <p class="card-text">dThe 74 Superior Rooms are a generous 42 m, accommodating up to two adults and two children, or three...</p>
+                    <div class="row"><a class="btn btn-outline-primary col-12" asp-route-branchId="2"asp-route-currentDate="@currentDate" asp-action="ViewRooms" asp-route-token="@_Token">View</a></div>
+                </div>
+        </div>
+        <div class="card col-4">
+            <img class="card-img-top" src="~/images/branch2.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Nourth Branch</h5>
+                    <p class="card-text">Stylish interiors have a muted color palette and subtle accents of Lefkaritika motifs on walls and f...</p>
+                    <div class="row"><a class="btn btn-outline-primary col-12" asp-route-branchId="7" asp-action="ViewRooms" asp-route-token="@_Token">View</a></div>
+                </div>
+        </div>
+        <div class="card col-4">
+            <img class="card-img-top" src="~/images/branch3.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">South Branch</h5>
+                    <p class="card-text">Ideal for two guests with room for a cot, the Superior Sea View guestrooms are fitted with floor-to-....</p>
+                    <div class="row"><a class="btn btn-outline-primary col-12" asp-route-branchId="10" asp-action="ViewRooms">View</a></div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+
+        var currentUser = document.getElementById('CurrentUserSpan').innerHTML;
+       
+        var token = document.getElementById('TokenSpan').innerHTML;
+        if(currentUser != "" && token !=""){
+            localStorage.setItem("User", currentUser);
+            localStorage.setItem("_Token", token);
+        }
+        
+        
+    </script>
+}

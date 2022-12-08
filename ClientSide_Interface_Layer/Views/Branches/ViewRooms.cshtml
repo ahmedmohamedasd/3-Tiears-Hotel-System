@@ -1,0 +1,197 @@
+﻿@model WebApi_Business_Layer.ViewModel.RoomsTypeViewModel
+@{
+	ViewData["Title"] = "View Rooms In Branch";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	var BookDate = ViewBag.CurrentDate;
+}
+<div class="tr-job-posted section-padding">
+    <div class="container">
+		<form method="post" asp-action="SearchByDate">
+			<div class="row text-center mb-3">
+				<input type="hidden" asp-for="@Model.BranchID" />
+				<input type="date" asp-for="@Model.CurrentDate" id="txtDate" class="form-control col-6" />
+				<button type="submit" class="btn btn-outline-secondary col-4 mr-2">Search</button>
+			</div>
+		</form>
+		
+	
+		<div class="job-tab text-center">
+			<ul class="nav nav-tabs justify-content-center" role="tablist">
+				<li role="presentation" class="active">
+					<a class="active show" href="#hot-jobs" aria-controls="hot-jobs" role="tab" data-toggle="tab" aria-selected="true">Single Room</a>
+				</li>
+				<li role="presentation"><a href="#recent-jobs" aria-controls="recent-jobs" role="tab" data-toggle="tab" class="" aria-selected="false">Double Room</a></li>
+				<li role="presentation"><a href="#popular-jobs" aria-controls="popular-jobs" role="tab" data-toggle="tab" class="" aria-selected="false">Suite Room</a></li>
+			</ul>
+			<div class="tab-content text-left">
+				<div role="tabpanel" class="tab-pane fade active show" id="hot-jobs">
+					<div class="row">
+						@foreach(var item in Model.SingleRooms){
+							<div class="col-md-6 col-lg-3">
+								<div class="job-item">
+
+									<div class="job-info">
+										<div class="company-logo">
+											<img src="~/images/@item.ImagePath" class="img-fluid" />
+										</div>
+										<span class="tr-title">
+											<a href="#">Room Number : @item.RoomNumber</a>
+										</span>
+										<ul class="tr-list job-meta">
+											<li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>@item.Branch.BranchName Branch</li>
+											<li><span><i class="fa fa-money" aria-hidden="true"></i></span>@item.RoomPrice <span style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">LE</span></li>
+										</ul>
+										<div class="time">
+											@if(item.Avilable == false){
+												<p class="col-12 text-center text-danger">Not Avilable</p>
+											}else{
+												<a><span>Avilable </span></a>
+												<span class="pull-right"><a asp-action="BookRoom" asp-controller="Booking" asp-route-RoomId="@item.Id" asp-route-date="@Model.CurrentDate" >Book</a> </span>
+											}
+							
+										</div>
+									</div>
+								</div>
+							</div>
+						}
+					
+					
+					</div><!-- /.row -->
+					<a asp-action="Home" asp-controller="Branches" class="btn btn-outline-warning">Back to List</a>
+				</div><!-- /.tab-pane -->
+				<div role="tabpanel" class="tab-pane fade in" id="recent-jobs">
+					<div class="row">
+						@foreach (var item in Model.DoubleRooms)
+								{
+						<div class="col-md-6 col-lg-3">
+							<div class="job-item">
+								
+									<div class="job-info">
+										<div class="company-logo">
+											<img src="~/images/@item.ImagePath" alt="images" class="img-fluid">
+										</div>
+										<span class="tr-title">
+											<a href="#">Room Number : @item.RoomNumber</a>
+
+										</span>
+										<ul class="tr-list job-meta">
+											<li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>@item.Branch.BranchName Branch</li>
+											<li><span><i class="fa fa-money" aria-hidden="true"></i></span>@item.RoomPrice <span style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">LE</span></li>
+										</ul>
+										<div class="time">
+											@if (item.Avilable == false)
+											{
+												<p class="col-12 text-center text-danger">Not Avilable</p>
+											}
+											else
+											{
+												<a><span>Avilable </span></a>
+												<span class="pull-right"><a asp-action="BookRoom" asp-controller="Booking" asp-route-RoomId="@item.Id" asp-route-date="@Model.CurrentDate" >Book</a> </span>
+											}
+										</div>
+									</div>
+								
+							</div>
+						</div>						
+						}
+					</div><!-- /.row -->
+					<a asp-action="Home" asp-controller="Branches" class="btn btn-outline-warning">Back to List</a>
+
+				</div><!-- /.tab-pane -->
+				<div role="tabpanel" class="tab-pane fade in" id="popular-jobs">
+					<div class="row">
+						@foreach (var item in Model.SuiteRooms)
+							   {
+						<div class="col-md-6 col-lg-3">
+							<div class="job-item">
+									<input type="text" value="@item.Id" id="txtRoomId_@item.Id">
+									<div class="job-info">
+										<div class="company-logo">
+											<img src="~/images/@item.ImagePath" alt="images" class="img-fluid">
+										</div>
+										<span class="tr-title">
+											<a href="#">Room Number : @item.RoomNumber</a>
+
+										</span>
+										<ul class="tr-list job-meta">
+											<li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>@item.Branch.BranchName Branch</li>
+											<li><span><i class="fa fa-money" aria-hidden="true"></i></span>@item.RoomPrice <span style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">LE</span></li>
+										</ul>
+										<div class="time">
+											@if (item.Avilable == false)
+											{
+												<p class="col-12 text-center text-danger">Not Avilable</p>
+											}
+											else
+											{
+												
+												<a><span>Avilable </span></a>
+												@*<span class="pull-right"><a data-RoomId="@item.Id" id="btnSubmit" class="btn btn-danger" onclick="submitForm(@item.Id)">Submit Form</a></span>*@
+												<span class="pull-right"><a asp-action="BookRoom" asp-controller="Booking" asp-route-RoomId="@item.Id" asp-route-date="@Model.CurrentDate" >Book</a> </span>
+											}
+										</div>
+									</div>
+														
+								
+							</div>
+						</div>	
+						}
+
+					</div><!-- /.row -->
+					<a asp-action="Home" asp-controller="Branches" class="btn btn-outline-warning">Back to List</a>
+
+				</div><!-- /.tab-pane -->
+			</div>				
+		</div><!-- /.job-tab -->			
+	</div><!-- /.container -->
+</div>
+@section scripts{
+	<script type="text/javascript">
+		//function submitForm(Id) {
+		//	//console.log($("#txtRoomId_" + Id).val());
+		//	//console.log(localStorage.getItem("_Token"));
+		//	//console.log($("#txtDate").val());
+
+		//	jQuery.ajax({
+		//		url: "@Url.Action("BookRoom","Booking")",
+		//		Type: 'GET',
+		//		data: {
+		//			RoomId: $("#txtRoomId_" + Id).val(),
+		//			date: $("#txtDate").val(),
+		//			Token: localStorage.getItem("_Token")
+		//		},success : function(){
+		//			console.log("Success Booing");
+		//		},
+		//		failure: function (errMsg) {
+		//			alert(errMsg);
+		//		});
+
+
+		//};
+		//$(document).ready(function(){
+		//	$("#btnSubmit").click(function () {
+			
+		//	var Room = new Object();
+		//		Room.Id = $(this).attr('data-RoomId');
+		//		Room.Date = $("#txtDate").val();
+		//		Room.Token = localStorage.getItem("_Token");
+		//		$.ajax({
+		//			type : "GET",
+		//			url : "/Booking/BookRoom",
+		//			data : JSON.stringify(Room),
+		//			contentType: "application/json; charset=utf-8",
+		//			dataType: "json",
+		//			success: function (response) {
+		//				console.log($("#txtRoomId_" + Id).val());
+		//			},
+		//			 failure: function(response) {  
+  //                     console.log("Check Url"); 
+  //                  },  
+  //                    error: function(response) {
+		//			   	console.log("Check Url");
+  //                  } 
+				
+		//	)};
+		//});
+	</script>
+}

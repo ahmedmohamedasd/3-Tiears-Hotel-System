@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ClientSide_Interface_Layer.Models.MvcBranch>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="AddOrEdit" class="btn btn-primary">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BranchId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BranchName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BranchLocation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BranchId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BranchName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BranchLocation)
+            </td>
+            <td>
+                    @Html.ActionLink("Edit", "AddOrEdit", new { id = item.BranchId }) 
+                    <a onclick="Delete(@item.BranchId)" class="btn btn-danger">Delete</a>
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@section scripts{
+    <script>
+        $(function(){
+            var successMessage = '@TempData["SuccessMessage"]';
+            if(successMessage != ''){
+                if (successMessage == "Deleted Successfully") {
+                    alertify.error(successMessage);
+                }else{
+                    alertify.success(successMessage);
+
+                }
+            } 
+        });
+        function Delete(id){
+            alertify.confirm('Hotel System','Are you Sure You want To Delete this Branch',function(){
+                window.location.href = '@Url.Action("Delete" , "Branches")/'+id;
+            },null);
+        }
+    </script>
+}

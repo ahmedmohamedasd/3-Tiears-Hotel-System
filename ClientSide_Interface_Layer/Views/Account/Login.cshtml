@@ -1,0 +1,29 @@
+﻿@model ClientSide_Interface_Layer.Models.MvcUser
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Login</h1>
+
+<form class="form" method="post" asp-action="Login">
+    <div class="text-danger" asp-validation-summary="All"></div>
+    <div class="form-group">
+        <div class="col-6">
+            <label class="col-form-label" id="UserName">User Name</label>
+            <input type="text" class="form-control" asp-for="Username">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-6">
+            <label class="col-form-label" id="UserName">Password</label>
+            <input type="password" asp-for="Password" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Login</button>
+    </div>
+       
+
+</form>
+

@@ -1,0 +1,69 @@
+﻿@model ClientSide_Interface_Layer.ViewModel.RoomBookViewModel
+
+@{
+    ViewData["Title"] = "BookRoom";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="display-4">Book Room</h1>
+
+<form method="post" asp-action="BookRoom" asp-controller="Booking">
+
+	<table class="table">
+	<div role="tabpanel" class="tab-pane fade active show" id="hot-jobs">
+		<div class="row">
+				<div class="col-md-6 col-lg-3">
+					<div class="job-item">
+
+						<div class="job-info">
+							<div class="company-logo">
+								<img src="~/images/@Model.ImagePath" class="img-fluid" />
+							</div>
+							<span class="tr-title">
+								
+								<input type="hidden" asp-for="RoomId" />
+								<input type="hidden" asp-for="TotalAmount" />
+								<input type="text" id="spanUserName" asp-for="Username" hidden />
+
+								<a href="#">Room Number : @Model.RoomNumber</a>
+
+							</span>
+							<ul class="tr-list job-meta">
+							<li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span> Branch : <span style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">@Model.RoomBranch Branch</span></li>
+							<li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>Room Type: <span style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">@Model.RoomType</span></li>
+							    <li><span><i class="fa fa-money" aria-hidden="true"></i></span>Price: @Model.Price <span style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">LE</span></li>
+							    <li><span><i class="fa fa-money" aria-hidden="true"></i></span>Discount: @Model.Discount %<span style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"></span></li>
+
+						     	<li><span><i class="fa fa-money" aria-hidden="true"></i></span>Total Amout : @Model.TotalAmount <span style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">LE</span></li>
+							    <li><input type="date" asp-for="@Model.CurrentDate" class="form-control" /></li>
+
+						</ul>
+							<div class="time">
+							<div class="row">
+								
+								<button type="submit" class="col-6 mr-0 btn btn-outline-success">Book 
+							           </button>
+								<a class="btn btn-outline-danger col-6" asp-action="ViewRooms" asp-controller="Branches" asp-route-branchId="@Model.BranchId">Cancel</a>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			
+				
+
+		</div><!-- /.row -->
+	</div><!-- /.tab-pane -->
+	
+	</table>
+</form>
+@section scripts{
+	<script type="text/javascript">
+		$(document).ready(function () {
+			document.getElementById("spanUserName").setAttribute('value', localStorage.getItem("User").toString());
+			
+
+		});
+
+	</script>
+}
